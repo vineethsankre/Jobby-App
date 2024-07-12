@@ -16,6 +16,7 @@ const JobCard = props => {
     id,
   } = jobData
   return (
+    <Link to={`/jobs/${id}`} className="job-link">
       <li className="job-item">
         <div className="logo-title-location-container">
           <div className="logo-title-container">
@@ -50,6 +51,7 @@ const JobCard = props => {
         <h1 className="description-heading">Description</h1>
         <p className="description-text">{jobDescription}</p>
       </li>
+    </Link>
   )
 }
 export default JobCard

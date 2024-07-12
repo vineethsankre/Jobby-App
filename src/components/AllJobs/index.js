@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import {AiOutlineSearch} from 'react-icons/ai'
 import Header from '../Header'
-import JobItem from '../JobItem'
+import JobItemDetails from '../JobItemDetails'
 import './index.css'
 
 const employmentTypesList = [
@@ -80,8 +80,6 @@ class AllJobs extends Component {
   onGetProfileDetails = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
-    // eslint-disable-next-line no-unused-vars
-    const {checkboxInputs, radioInput, searchInput} = this.state
     const profileApiUrl = 'https://apis.ccbp.in/profile'
     const optionsProfile = {
       headers: {
@@ -260,7 +258,7 @@ class AllJobs extends Component {
     ) : (
       <ul className="ul-job-items-container">
         {jobsData.map(eachItem => (
-          <JobItem key={eachItem.id} jobData={eachItem} />
+          <JobItemDetails key={eachItem.id} jobData={eachItem} />
         ))}
       </ul>
     )
@@ -333,8 +331,7 @@ class AllJobs extends Component {
   }
 
   render() {
-    // eslint-disable-next-line no-unused-vars
-    const {checkboxInputs, radioInput, searchInput} = this.state
+    const {searchInput} = this.state
     return (
       <>
         <Header />
@@ -360,6 +357,7 @@ class AllJobs extends Component {
               />
               <button
                 data-testid="searchButton"
+                aria-label="search button"
                 type="button"
                 className="search-button"
                 onClick={this.onSubmitSearchInput}

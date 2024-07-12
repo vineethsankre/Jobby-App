@@ -10,20 +10,21 @@ const FiltersGroup = props => {
   const renderSearchInput = () => {
     const {searchInput} = props
     return (
-      <div className='search-input-container'>
+      <div className="search-input-container">
         <input
-          type='search'
-          className='search-input'
-          placeholder='Search'
+          type="search"
+          className="search-input"
+          placeholder="Search"
           onChange={onChangeSearchInput}
           value={searchInput}
         />
         <button
-          type='button'
-          className='search-button'
-          data-testid='searchButton'
+          aria-label="search button"
+          data-testid="searchButton"
+          type="button"
+          className="search-button"  
         >
-          <BsSearch className='search-icon' />
+          <BsSearch className="search-icon" />
         </button>
       </div>
     )
@@ -32,9 +33,9 @@ const FiltersGroup = props => {
   const renderTypeOfEmployment = () => {
     const {employmentTypesList} = props
     return (
-      <div className='filter-container'>
-        <h1 className='filter-heading'>Type of Employment</h1>
-        <ul className='filter-type-list-container'>
+      <div className="filter-container">
+        <h1 className="filter-heading">Type of Employment</h1>
+        <ul className="filter-type-list-container">
           {employmentTypesList.map(eachEmployeeType => {
             const {changeEmployeeList} = props
             const onSelectEmployeeType = event => {
@@ -42,19 +43,19 @@ const FiltersGroup = props => {
             }
             return (
               <li
-                className='filter-list-item'
+                className="filter-list-item"
                 key={eachEmployeeType.employmentTypeId}
               >
                 <input
-                  type='checkbox'
+                  type="checkbox"
                   id={eachEmployeeType.employmentTypeId}
-                  className='check-input'
+                  className="check-input"
                   value={eachEmployeeType.employmentTypeId}
                   onChange={onSelectEmployeeType}
                 />
                 <label
                   htmlFor={eachEmployeeType.employmentTypeId}
-                  className='filter-label'
+                  className="filter-label"
                 >
                   {eachEmployeeType.label}
                 </label>
@@ -69,26 +70,26 @@ const FiltersGroup = props => {
   const renderSalaryRange = () => {
     const {salaryRangesList} = props
     return (
-      <div className='filter-container'>
-        <h1 className='filter-heading'>Salary Range</h1>
-        <ul className='filter-type-list-container'>
+      <div className="filter-container">
+        <h1 className="filter-heading">Salary Range</h1>
+        <ul className="filter-type-list-container">
           {salaryRangesList.map(eachFilter => {
             const {changeSalary} = props
             const onSelectSalary = () => {
               changeSalary(eachFilter.salaryRangeId)
             }
             return (
-              <li className='filter-list-item' key={eachFilter.salaryRangeId}>
+              <li className="filter-list-item" key={eachFilter.salaryRangeId}>
                 <input
-                  type='radio'
-                  name='salary'
+                  type="radio"
+                  name="salary"
                   id={eachFilter.salaryRangeId}
-                  className='check-input'
+                  className="check-input"
                   onChange={onSelectSalary}
                 />
                 <label
                   htmlFor={eachFilter.salaryRangeId}
-                  className='filter-label'
+                  className="filter-label"
                 >
                   {eachFilter.label}
                 </label>
@@ -101,12 +102,12 @@ const FiltersGroup = props => {
   }
 
   return (
-    <div className='filters-group-container'>
+    <div className="filters-group-container">
       {renderSearchInput()}
       <ProfileCard />
-      <hr className='hr-line' />
+      <hr className="hr-line" />
       {renderTypeOfEmployment()}
-      <hr className='hr-line' />
+      <hr className="hr-line" />
       {renderSalaryRange()}
     </div>
   )

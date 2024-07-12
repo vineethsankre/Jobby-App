@@ -59,13 +59,13 @@ const Header = props => {
           </Link>
           <ul className="nav-menu">
             <li className="nav-menu-item">
-              <Link to="/" className="nav-link">
+              <Link className="nav-link" to="/">
                 Home
               </Link>
             </li>
 
             <li className="nav-menu-item">
-              <Link to="/jobs" className="nav-link">
+              <Link className="nav-link" to="/jobs">
                 Jobs
               </Link>
             </li>

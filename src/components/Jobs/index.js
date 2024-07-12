@@ -69,7 +69,10 @@ class Jobs extends Component {
   getJobs = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
     const {employeeType, minimumSalary, searchInput} = this.state
-    const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${employeeType.join(',')}&minimum_package=${minimumSalary}&search=${searchInput}`
+    console.log(employeeType)
+    const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${employeeType.join(
+      ',',
+    )}&minimum_package=${minimumSalary}&search=${searchInput}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       headers: {
@@ -185,20 +188,24 @@ class Jobs extends Component {
   }
 
   changeEmployeeList = type => {
-    this.setState(prevState => {
-      const {employeeType} = prevState
-      let updatedList = []
+    this.setState(
+      prevState => {
+        const {employeeType} = prevState
+        let updatedList = []
 
-      if (employeeType.includes(type)) {
-        updatedList = employeeType.filter(eachType => eachType !== type)
-      } else {
-        updatedList = [...employeeType, type]
-      }
+        if (employeeType.includes(type)) {
+          updatedList = employeeType.filter(eachType => eachType !== type)
+        } else {
+          updatedList = [...employeeType, type]
+        }
 
-      return {employeeType: updatedList}
-    }, this.getJobs)
+        return {employeeType: updatedList}
+      },
+      () => {
+        this.getJobs()
+      },
+    )
   }
-
 
   render() {
     const {searchInput} = this.state
@@ -225,8 +232,9 @@ class Jobs extends Component {
                   onKeyDown={this.onEnterSearchInput}
                 />
                 <button
-                  type="button"
                   data-testid="searchButton"
+                  aria-label="search button"
+                  type="button" 
                   className="search-button-container-desktop"
                   onClick={this.getJobs}
                 >
