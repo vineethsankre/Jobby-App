@@ -7,6 +7,11 @@ const FiltersGroup = props => {
     changeSearchInput(event.target.value)
   }
 
+  const onClickSearchButton = () => {
+    const {onSearchButton} = props
+    onSearchButton()
+  }
+
   const renderSearchInput = () => {
     const {searchInput} = props
     return (
@@ -22,7 +27,8 @@ const FiltersGroup = props => {
           aria-label="search button"
           data-testid="searchButton"
           type="button"
-          className="search-button"  
+          className="search-button"
+          onClick={onClickSearchButton}
         >
           <BsSearch className="search-icon" />
         </button>

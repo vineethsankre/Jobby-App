@@ -221,6 +221,7 @@ class Jobs extends Component {
               changeEmployeeList={this.changeEmployeeList}
               changeSearchInput={this.changeSearchInput}
               searchInput={searchInput}
+              onSearchButton={this.getJobs}
             />
             <div className="search-input-jobs-list-container">
               <div className="search-input-container-desktop">
@@ -234,7 +235,7 @@ class Jobs extends Component {
                 <button
                   data-testid="searchButton"
                   aria-label="search button"
-                  type="button" 
+                  type="button"
                   className="search-button-container-desktop"
                   onClick={this.getJobs}
                 >

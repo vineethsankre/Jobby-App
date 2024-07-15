@@ -160,7 +160,6 @@ class AllJobs extends Component {
         eachItem => eachItem !== event.target.id,
       )
       this.setState(
-        // eslint-disable-next-line no-unused-vars
         prevState => ({checkboxInputs: filteredData}),
         this.onGetJobDetails,
       )
