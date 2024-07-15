@@ -1,6 +1,7 @@
 import {BsSearch} from 'react-icons/bs'
 import ProfileCard from '../ProfileCard'
 import './index.css'
+
 const FiltersGroup = props => {
   const onChangeSearchInput = event => {
     const {changeSearchInput} = props
@@ -24,13 +25,13 @@ const FiltersGroup = props => {
           value={searchInput}
         />
         <button
-          aria-label="search button"
-          data-testid="searchButton"
-          type="button"
-          className="search-button"
+          aria-label='search button'
+          data-testid='searchButton'
+          type='button'
+          className='search-button'
           onClick={onClickSearchButton}
         >
-          <BsSearch className="search-icon" />
+          <BsSearch className='search-icon' />
         </button>
       </div>
     )
