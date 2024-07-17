@@ -67,21 +67,23 @@ class Jobs extends Component {
   }
 
   getJobs = async () => {
-    this.setState({apiStatus: apiStatusConstants.inProgress})
-    const {employeeType, minimumSalary, searchInput} = this.state
-    console.log(employeeType)
-    const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${employeeType.join(
-      ',',
-    )}&minimum_package=${minimumSalary}&search=${searchInput}`
-    const jwtToken = Cookies.get('jwt_token')
-    const options = {
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-      method: 'GET',
-    }
+  this.setState({apiStatus: apiStatusConstants.inProgress})
+  const {employeeType, minimumSalary, searchInput} = this.state
+  console.log(employeeType)
+  const apiUrl = `https://apis.ccbp.in/jobs?employment_type=${employeeType.join(
+    ',',
+  )}&minimum_package=${minimumSalary}&search=${searchInput}`
+  const jwtToken = Cookies.get('jwt_token')
+  const options = {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+    method: 'GET',
+  }
+  
+  try {
     const response = await fetch(apiUrl, options)
-    if (response.ok === true) {
+    if (response.ok) {
       const data = await response.json()
       if (data.jobs.length === 0) {
         this.setState({
@@ -107,7 +109,10 @@ class Jobs extends Component {
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
+  } catch (error) {
+    this.setState({apiStatus: apiStatusConstants.failure})
   }
+}
 
   renderJobsList = () => {
     const {jobsList} = this.state
